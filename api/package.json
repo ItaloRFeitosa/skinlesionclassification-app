@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "start": "node src/server.js",
+    "migrate": "npx knex migrate:latest --env staging",
+    "start-server": "node scripts/start-server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
