@@ -13,8 +13,28 @@ module.exports = ( collectionName ) => {
       collectionRef
       .add(documentData)
       .then(newDocRef => {
-
+        console.log(newDocRef.data);
         console.log(`Document with ID ${newDocRef.id} added on ${collectionName} with success.`);
+        resolve(newDocRef);
+
+      })
+      .catch(error => {
+
+        console.error(`Error to add on ${collectionName}.`);
+        reject(error);
+
+      });
+    }),
+
+    setNewDocumentWithId: (docId, documentData) => new Promise( (resolve,reject) => {
+      collectionRef
+      .doc(docId)
+      .set(documentData)
+      .then(newDocRef => {
+
+        console.log(`Document with ID ${docId} added on ${collectionName} with success.`);
+        
+        
         resolve(newDocRef);
 
       })
