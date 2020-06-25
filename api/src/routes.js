@@ -1,5 +1,4 @@
 const routes = require('express').Router();
-const userController = require('./controllers/UserController');
 const predictController = require('./controllers/PredictController');
 
 /**
@@ -11,16 +10,7 @@ routes.all('/', (req, res) => {
     })
 });
 
-routes.post('/users', userController.create);
-routes.get('/users', userController.index);
-routes.get('/users/:id', userController.show);
-routes.delete('/users/:id', userController.delete);
-routes.put('/users/:id', userController.update);
-
 routes.post('/predict', predictController.create);
-
-
-
-
+routes.get('/predict/:id', predictController.show);
 
 module.exports = routes;
