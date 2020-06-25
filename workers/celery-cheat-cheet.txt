@@ -2,8 +2,10 @@ conda activate workers-app
 
 cd Desk*/code*/skin*/wor*
 
-celery -A predictor worker --loglevel=INFO -P eventlet -c 1 -n worker1@%h
+celery -A worker worker --loglevel=INFO -P eventlet -c 1 -n worker1@%h
 
-celery -A predictor worker --loglevel=INFO -P eventlet -c 1 -n worker2@%h
+celery -A worker worker --loglevel=INFO -P eventlet -c 1 -n worker1@%h
 
-celery -A predictor worker --loglevel=INFO -P eventlet -c 1 -n worker3@%h
+celery -A worker worker --loglevel=INFO -P eventlet -c 1 -n worker2@%h
+
+celery -A worker worker --loglevel=INFO -P eventlet -c 1 -n worker3@%h
