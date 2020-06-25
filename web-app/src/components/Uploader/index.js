@@ -1,11 +1,11 @@
 import React, { useRef, useState} from 'react';
 import {Container, Button} from './styles';
 
+import uuidV4 from 'uuid/v4';
+
 import storage from '../../services/storage';
 
 import {predictService} from '../../services/api';
-
-import crypto from 'crypto';
 
 import { MdCameraAlt, MdDone, MdCloudUpload} from 'react-icons/md';
 
@@ -25,24 +25,25 @@ export default function Uploader({user}){
       const file = fileUploader.current.files[0];
 
       const fileExtension = file.name.split('.').pop();
-      const imgId = crypto.randomBytes(8).toString('HEX');
+      const imgId = uuidV4();
       const imgFilename = imgId.concat(`.${fileExtension}`);
-
-      const imageData = {
-        id: imgId,
-        img_name: imgFilename,
-        ...user
-      };
 
       const imageRef = storage.ref().child(imgFilename);
 
-      imageRef.put(file).then(snapshot => {
+      imageRef.put(file).then(async snapshot => {
         console.log('enviado para o firebase');
         setDone(true);
         setLoading(false);
 
+        const imageData = {
+          id: imgId,
+          img_name: imgFilename,
+          img_url: await imageRef.getDownloadURL(),
+          ...user
+        };
+
         predictService(imageData).then(response => {
-          console.log(response);
+          console.log(response.data);
 
           // redirecionar para página de resultado
         });
