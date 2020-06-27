@@ -12,7 +12,14 @@ module.exports = {
           email
       });
 
-      sendTask('predict', createdImage, (data) => console.log('Task Done: \n', data))
+      sendTask(
+        'predict',
+        createdImage,
+        (data) => {
+          const { result } = JSON.parse(data);
+          console.log('Task Done: \n', result);
+        }
+      )
 
       return res.json(createdImage);
     },
