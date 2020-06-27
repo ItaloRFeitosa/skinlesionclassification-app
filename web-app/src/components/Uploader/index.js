@@ -1,7 +1,7 @@
 import React, { useRef, useState} from 'react';
 import {Container, Button} from './styles';
 
-import uuidV4 from 'uuid/v4';
+import {v4 as uuidV4} from 'uuid';
 
 import storage from '../../services/storage';
 
@@ -13,17 +13,16 @@ export default function Uploader({user}){
   const fileUploader = useRef(null)
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
+
   function handleUpload(e){
     fileUploader.current.click();
     setLoading(true)
-
   }
 
   function sendImage(e){
       setDone(false);
 
       const file = fileUploader.current.files[0];
-
       const fileExtension = file.name.split('.').pop();
       const imgId = uuidV4();
       const imgFilename = imgId.concat(`.${fileExtension}`);
@@ -50,10 +49,7 @@ export default function Uploader({user}){
       })
       .catch(error => console.log(error));
 
-
-
   }
-
 
   return(
   <Container>
