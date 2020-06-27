@@ -26,13 +26,13 @@ class PredictionWithSVM:
         self.svm_rbf = Predictor((base_name + 'rbf'))
         self.svm_rbf_norm = Predictor((base_name + 'rbf_norm'))
     
-    def start(self, img_path):
+    def run(self, img_path):
         features = self.feature_extractor.extract(img_path)
         normalized_features = normalize(features)
 
-        result_svm_linear = self.svm_linear.predict(features),
-        result_svm_linear_norm = self.svm_linear_norm.predict(normalized_features),
-        result_svm_rbf = self.svm_rbf.predict(features),
+        result_svm_linear = self.svm_linear.predict(features)
+        result_svm_linear_norm = self.svm_linear_norm.predict(normalized_features)
+        result_svm_rbf = self.svm_rbf.predict(features)
         result_svm_rbf_norm = self.svm_rbf_norm.predict(normalized_features)
 
         return {
