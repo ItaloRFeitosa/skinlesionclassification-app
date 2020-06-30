@@ -10,6 +10,8 @@ class Predictor:
         self.classifier = load(path)
 
     def predict(self, feature):
+        #print('[' + self.model_name + '] Predicting ...\n')
         pred = np.ravel(self.classifier.predict_proba(np.reshape(feature, (1, -1))))
         pred = [(round(p,4)*100) for p in pred]
+        
         return pred
