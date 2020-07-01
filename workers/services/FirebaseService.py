@@ -1,6 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import storage
+from firebase_admin import firestore
 from pathlib import Path
 
 class FirebaseService:
@@ -13,3 +14,4 @@ class FirebaseService:
         })
 
         self.bucket = storage.bucket()
+        self.db = firestore.client()
