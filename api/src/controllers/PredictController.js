@@ -9,7 +9,8 @@ module.exports = {
           img_name,
           img_url,
           name,
-          email
+          email,
+          results: ''
       });
 
       sendTask(
