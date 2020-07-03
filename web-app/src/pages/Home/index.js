@@ -21,12 +21,10 @@ export default function Home(){
 
       <Form>
         <Input>
-
           <input
             placeholder='Nome'
             value={name}
             onChange={e => setName(e.target.value)}
-
           />
           <MdAccountBox size={32}/>
         </Input>
@@ -39,9 +37,6 @@ export default function Home(){
           />
           <MdEmail size={32}/>
         </Input>
-
-
-
 
         <Uploader
           user={{name, email}}

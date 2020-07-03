@@ -3,9 +3,11 @@ import {Container, Button} from './styles';
 
 import {v4 as uuidV4} from 'uuid';
 
+import {useHistory} from 'react-router-dom'
+
 import storage from '../../services/storage';
 
-import {predictService} from '../../services/api';
+import {predictLesion} from '../../services/predict.api';
 
 import { MdCameraAlt, MdDone, MdCloudUpload} from 'react-icons/md';
 
@@ -13,6 +15,8 @@ export default function Uploader({user}){
   const fileUploader = useRef(null)
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  const history = useHistory();
 
   function handleUpload(e){
     fileUploader.current.click();
@@ -41,9 +45,10 @@ export default function Uploader({user}){
           ...user
         };
 
-        predictService(imageData).then(response => {
+        predictLesion(imageData).then(response => {
           console.log(response.data);
 
+          history.push(`/results/${imageData.id}`)
           // redirecionar para página de resultado
         });
       })
