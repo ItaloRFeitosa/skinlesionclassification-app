@@ -18,8 +18,3 @@ api.interceptors.response.use(
 
 export default api;
 
-export const predictService = async (imageData) => {
-
-  return await api.post('/predict', imageData);
-
-}
