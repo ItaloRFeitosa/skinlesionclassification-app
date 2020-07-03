@@ -9,7 +9,7 @@ import storage from '../../services/storage';
 
 import {predictLesion} from '../../services/predict.api';
 
-import { MdCameraAlt, MdDone, MdCloudUpload} from 'react-icons/md';
+import { MdCameraAlt, MdDone, MdCloudUpload, MdFormatLineSpacing} from 'react-icons/md';
 
 export default function Uploader({user}){
   const fileUploader = useRef(null)
@@ -19,6 +19,7 @@ export default function Uploader({user}){
   const history = useHistory();
 
   function handleUpload(e){
+    setDone(false);
     fileUploader.current.click();
     setLoading(true)
   }
@@ -46,10 +47,8 @@ export default function Uploader({user}){
         };
 
         predictLesion(imageData).then(response => {
-          console.log(response.data);
-
+          //console.log(response.data);
           history.push(`/results/${imageData.id}`)
-          // redirecionar para página de resultado
         });
       })
       .catch(error => console.log(error));
