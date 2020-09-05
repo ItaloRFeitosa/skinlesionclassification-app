@@ -19,7 +19,7 @@ export const Container = styled.div`
   nav {
     justify-content: flex-end;
     a {
-      margin: 0 30px;
+      margin: 0 0px;
       padding: 24px 30px 22px;
       text-decoration: none;
       font-weight: 500;
@@ -28,7 +28,6 @@ export const Container = styled.div`
       transition: 0.2s;
 
       &:hover {
-        padding: 24px 30px 27px;
         background: #ecf1f8;
         color: #03191E;
         border-bottom: 10px solid #03191E;
